@@ -249,9 +249,11 @@ hook_exit(EFI_SYSTEM_TABLE *local_systab)
 	systab = local_systab;
 	BS = local_systab->BootServices;
 
-	/* we need to hook Exit() so that we can allow users to quit the
+	/*
+	 * We need to hook Exit() so that we can allow users to quit the
 	 * bootloader and still e.g. start a new one or run an internal
-	 * shell. */
+	 * shell.
+	 */
 	system_exit = systab->BootServices->Exit;
 	systab->BootServices->Exit = shim_exit;
 }
